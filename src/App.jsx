@@ -9,6 +9,8 @@ function App() {
     zoom: 8
   });
 
+  const [isLoading, setIsLoading] = useState(true);
+
   const [locationDetails, setLocationDetails] = useState({
     country: null,
     city: null,
@@ -25,6 +27,7 @@ function App() {
         longitude: position.coords.longitude,
         zoom: 11
       });
+      setIsLoading(false)
     });
   }, []);
   
@@ -46,8 +49,9 @@ function App() {
   };
 
 
+
   return <div>
-    <InteractiveMap onMapClick={handleMapClick} viewport={viewport} locationDetails={locationDetails} selectedLocation={selectedLocation} setSelectedLocation={setSelectedLocation}/>
+    <InteractiveMap isLoading={isLoading} onMapClick={handleMapClick} viewport={viewport} locationDetails={locationDetails} selectedLocation={selectedLocation} setSelectedLocation={setSelectedLocation}/>
   </div>
 }
 
