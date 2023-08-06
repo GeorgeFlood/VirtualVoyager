@@ -31,7 +31,7 @@ if(isLoading) return <div>Loading your location.. </div>;
       </Marker>
       {selectedLocation && <Marker position={selectedLocation}>
         <Popup>
-          Selected {locationDetails?.country} <br /> Plan your visit {getLocationDescription(locationDetails)}!
+          Selected {locationDetails?.country} <br /> Plan your visit to {getLocationDescription(locationDetails)}!
         </Popup>
       </Marker>}
       <MapClickHandler />

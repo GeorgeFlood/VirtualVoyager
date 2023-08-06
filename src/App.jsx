@@ -1,10 +1,13 @@
 import { useState, useEffect } from "react";
 import InteractiveMap from "./components/InteractiveMap/InteractiveMap"
+import InteractiveSideBar from './components/InteractiveSideBar/InteractiveSideBar'
+
+import './app.css';
 
 function App() {
 
   const [viewport, setViewport] = useState({
-    latitude: 55.7577, // Default location
+    latitude: 55.7577, 
     longitude: -122.4376,
     zoom: 8
   });
@@ -31,7 +34,6 @@ function App() {
     });
   }, []);
   
-
   const handleMapClick = (latlng) => {
     setSelectedLocation(latlng);
     fetch(`https://nominatim.openstreetmap.org/reverse?lat=${latlng.lat}&lon=${latlng.lng}&format=json`)
@@ -49,10 +51,14 @@ function App() {
   };
 
 
-
-  return <div>
-    <InteractiveMap isLoading={isLoading} onMapClick={handleMapClick} viewport={viewport} locationDetails={locationDetails} selectedLocation={selectedLocation} setSelectedLocation={setSelectedLocation}/>
-  </div>
+  return (
+    <div>
+      <div className="map-and-sidebar">
+      <InteractiveMap isLoading={isLoading} onMapClick={handleMapClick} viewport={viewport} locationDetails={locationDetails} selectedLocation={selectedLocation} setSelectedLocation={setSelectedLocation}/>
+     {selectedLocation && <InteractiveSideBar details={locationDetails}/>}
+      </div>
+    </div>
+  );
 }
 
 export default App
