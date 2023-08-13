@@ -1,5 +1,16 @@
 .map-container {
-    height: 50vh;
     width: 100%;
   }
+
+  .popup-current-location {
+    background-color: #283593; 
+    color: #FFFFFF;
+    border: 2px solid #F57C00; 
+  }
+  
+  .popup-destination {
+    background-color: #F57C00; 
+    color: #FFFFFF;
+    border: 2px solid #283593; 
+  }#283593; 
   

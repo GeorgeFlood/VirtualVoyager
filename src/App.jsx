@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import InteractiveMap from "./components/InteractiveMap/InteractiveMap"
 import InteractiveSideBar from './components/InteractiveSideBar/InteractiveSideBar'
+import LocationInfo from './components/LocationInfo/LocationInfo'
+import DateRange from "./components/DateRange/DateRange";
 
 import './app.css';
 
@@ -11,16 +13,15 @@ function App() {
     longitude: -122.4376,
     zoom: 8
   });
-
   const [isLoading, setIsLoading] = useState(true);
-
   const [locationDetails, setLocationDetails] = useState({
     country: null,
     city: null,
     state: null
   });
-
   const [selectedLocation, setSelectedLocation] = useState(null);
+  const [startDate, setStartDate] = useState(new Date());
+  const [endDate, setEndDate] = useState(new Date());
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition((position) => {
@@ -51,11 +52,18 @@ function App() {
   };
 
 
+
+  
   return (
     <div>
       <div className="map-and-sidebar">
       <InteractiveMap isLoading={isLoading} onMapClick={handleMapClick} viewport={viewport} locationDetails={locationDetails} selectedLocation={selectedLocation} setSelectedLocation={setSelectedLocation}/>
      {selectedLocation && <InteractiveSideBar details={locationDetails}/>}
+      </div>
+
+      <div>
+        <DateRange startDate={startDate} setStartDate={setStartDate} setEndDate={setEndDate} endDate={endDate} locationDetails={locationDetails}/>
+         <LocationInfo selectedLocation={selectedLocation}/>
       </div>
     </div>
   );
