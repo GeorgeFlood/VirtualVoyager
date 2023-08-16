@@ -1,22 +1,41 @@
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
-const LocationInfo = ({ selectedLocation }) => {
-  // Early return if no location is selected
-  if (!selectedLocation) return;
 
-  const { lat, lng } = selectedLocation;
+const LocationInfo = ({ selectedLocation, details }) => {
 
-const key = '50B4C183803C44C7992C00D13A74AF9A'
+  const [imageUrls, setImageUrls] = useState([]);
 
-const options = {method: 'GET', headers: {accept: 'application/json'}};
+  const {country, state, city} = details || {};
 
-fetch('https://api.content.tripadvisor.com/api/v1/location/nearby_search?latLong=48.84087654039132%2C2.271729383423429&key=50B4C183803C44C7992C00D13A74AF9A&category=attractions&language=en', options)
-  .then(response => response.json())
-  .then(response => console.log(response))
-  .catch(err => console.error(err));
+const key = 'e13f3ca2ff4d8ec8068ea28ad8950e47';
+const tags = city || state || country + 'popular';
+const url = `https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${key}&tags=${tags}&format=json&nojsoncallback=1`;
+
+useEffect(() => {
+   if (!selectedLocation) return;
+  fetch(url)
+    .then(res => res.json())
+    .then(data => {
+      const urls = data.photos.photo.map(photo => {
+        const { farm, server, id, secret } = photo;
+        return `https://farm${farm}.staticflickr.com/${server}/${id}_${secret}.jpg`;
+      });
+
+      setImageUrls(urls);
+    })
+    .catch(error => console.error('There was an error fetching the photo:', error));
+}, [selectedLocation, details]); 
+
+
+
+
   return (
-    <div>HELLO</div>
+<div>
+      {imageUrls.map((url, index) => (
+        <img key={index} src={url} alt={`Image ${index}`} />
+      ))}
+    </div>
   );
 };
 

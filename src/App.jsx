@@ -35,6 +35,8 @@ function App() {
     });
   }, []);
   
+console.log(startDate, endDate)
+
   const handleMapClick = (latlng) => {
     setSelectedLocation(latlng);
     fetch(`https://nominatim.openstreetmap.org/reverse?lat=${latlng.lat}&lon=${latlng.lng}&format=json`)
@@ -62,8 +64,8 @@ function App() {
       </div>
 
       <div>
-        <DateRange startDate={startDate} setStartDate={setStartDate} setEndDate={setEndDate} endDate={endDate} locationDetails={locationDetails}/>
-         <LocationInfo selectedLocation={selectedLocation}/>
+            <LocationInfo selectedLocation={selectedLocation} details={locationDetails}/>
+        <DateRange startDate={startDate} setStartDate={setStartDate} setEndDate={setEndDate} endDate={endDate} locationDetails={locationDetails} selectedLocation={selectedLocation}/>
       </div>
     </div>
   );

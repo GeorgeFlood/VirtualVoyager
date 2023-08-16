@@ -1,16 +1,18 @@
 import React, { useState } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+import './DateRange.css';
 
-function DateRange({startDate, setStartDate, endDate, setEndDate, locationDetails}) {
+function DateRange({startDate, setStartDate, endDate, setEndDate, locationDetails, selectedLocation}) {
 
-    if(!locationDetails) return;
+    if(!selectedLocation) return;
 
 console.log(locationDetails);
 
   return (
-    <>
-    <h1>When are you traveling to {locationDetails.country}?</h1>
+    <div className='container'>
+    <h1>When are you traveling to {locationDetails.city ? locationDetails.city : locationDetails.country}? <span className='info' title='Date info so we can search for flights'>i</span></h1>
+      <div className='calender'>
     <DatePicker
       selected={startDate}
       onChange={(date) => setStartDate(date)}
@@ -28,7 +30,8 @@ console.log(locationDetails);
       minDate={startDate}
     dateFormat="dd/MM/yyyy"
     />
-    </>
+ </div>
+ </div>
   );
 }
 
