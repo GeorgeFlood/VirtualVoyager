@@ -1,12 +1,4 @@
-:root {
-  --primary-color: #283593; /* Deep blue */
-  --secondary-color: #F57C00; /* Warm orange */
-  --accent-color1: #C2185B; /* Vivid pink */
-  --accent-color2: #0288D1; /* Bright blue */
-  --background-color: #222222; /* Dark grey */
-  --main-text-color: #FFFFFF; /* White */
-  --secondary-text-color: #AAAAAA; /* Light grey */
-}
+
 
 
 .sidebar{
@@ -15,13 +7,15 @@
   flex-basis: 20%;
   align-items: center;
   background-color:var(--primary-color);
-  color: var(--main-text-color);
-  font-size: 1.5rem;
+  color: var(--neutral1);
   border-radius: 2rem 0 0 2rem;
 }
 
 .sidebar h3{
+  font-family: var(--header-font);
   text-decoration: underline;
+  color: var(--highlight-color);
+  font-size: 3rem;
 }
 
 .sidebar ul{
@@ -31,5 +25,6 @@ padding: 1rem;
 .sidebar li{
 text-decoration: none;
 list-style: none;
+font-size: 2rem;
 margin: 2rem 0;
 }

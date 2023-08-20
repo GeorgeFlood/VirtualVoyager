@@ -2,3 +2,15 @@
 /* const tripAdvisor api = 50B4C183803C44C7992C00D13A74AF9A */
 
 
+.brochure-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.brochure-container h1{
+    font-family: var(--personal-font);
+    text-decoration: underline;
+    font-size: 4rem;
+    color: var(--highlight-color);
+}

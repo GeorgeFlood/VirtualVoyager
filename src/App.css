@@ -1,12 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Roboto:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Playfair+Display:ital,wght@1,500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Permanent+Marker&display=swap');
+
 :root {
-  --primary-color: #283593; /* Deep blue */
-  --secondary-color: #F57C00; /* Warm orange */
-  --accent-color1: #C2185B; /* Vivid pink */
-  --accent-color2: #0288D1; /* Bright blue */
-  --background-color: #222222; /* Dark grey */
-  --main-text-color: #FFFFFF; /* White */
-  --secondary-text-color: #AAAAAA; /* Light grey */
+  --primary-color: #0077CC; /* Ocean blue */
+  --secondary-color: #FFA833; /* sun-kissed orange */
+  --accent-color1: #33AA55; /* Lush green */
+  --neutral1: #F0F0F0; /* Soft grey */
+  --neutral2: #333333; /* Dark charcoal */
+  --highlight-color: #FF6699; /* rose pink */
+  --error-color: #FF3366; /* warm red */
+
+  --small-margin: 2rem;
+  --med-margin: 4rem;
+  --lg-margin: 6rem;
+
+  --header-font: 'Playfair Display', serif; /* Headers/Titles */
+  --personal-font: 'Permanent Marker', cursive; /* Special Highlights/Unique Features */
 }
+
+*,
+*::before,
+*::after{
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+html{
+  box-sizing: border-box;
+  font-size: 62.5%;
+}
+
+body{
+  font-family: 'Roboto', sans-serif;;
+}
+
 
 .map-and-sidebar{
   display: flex;

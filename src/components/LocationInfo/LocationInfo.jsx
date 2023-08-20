@@ -1,6 +1,6 @@
 
 import React, { useEffect, useState } from 'react';
-
+import './locationInfo.css'
 
 const LocationInfo = ({ selectedLocation, details }) => {
 const [imageUrls, setImageUrls] = useState([]);
@@ -63,11 +63,15 @@ return (
   ) : errorMsg ? (
     <div>{errorMsg}</div>
   ) : (
-    <div>
+    <div className='brochure-container'>
+    <h1>Brochure</h1>
+    <div className='brochure-grid'>
       {imageUrls.map((url, index) => (
         <img key={index} src={url} alt={`Image ${index}`} />
       ))}
+        </div>
     </div>
+  
   )
 );
 
