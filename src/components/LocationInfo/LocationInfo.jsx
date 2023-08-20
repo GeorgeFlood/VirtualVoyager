@@ -8,10 +8,10 @@ const [isLoading, setIsLoading] = useState(false);
 const [errorMsg, setErrorMsg] = useState('');
   const {country, state, city} = details || {};
 
-const key = 'e13f3ca2ff4d8ec8068ea28ad8950e47';
+const key = 'ai5o6ctoDBjsLfyEXNxOeHEikQyxi_W82VTHzZM0QoI';
 let tags = city ? `${city}` : state ? `${state}` : `${country}`;
 console.log(tags);
-const url = `https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${key}&tags=${tags}&format=json&nojsoncallback=1`;
+const url = `https://api.unsplash.com/search/photos?query=${tags}&client_id=${key}`;
 
   const shuffleArray = (array) => {
     for (let i = array.length - 1; i > 0; i--) {
@@ -29,33 +29,30 @@ useEffect(() => {
   const controller = new AbortController();
   const { signal } = controller;
 
-  fetch(url, { signal }) // Pass the signal to the fetch call
+ fetch(url, { signal }) // Pass the signal to the fetch call
     .then(res => res.json())
     .then(data => {
-      const urls = data.photos.photo.map(photo => {
-        const { farm, server, id, secret } = photo;
-        return `https://farm${farm}.staticflickr.com/${server}/${id}_${secret}.jpg`;
-      });
-      const selectedUrls = shuffleArray(urls).slice(0, 49);
+      const urls = data.results.map(photo => photo.urls.full);
+      const selectedUrls = shuffleArray(urls).slice(0, 8);
       setImageUrls(selectedUrls);
+      setIsLoading(false); // Move this inside the then block
     })
     .catch(error => {
       // Only log the error if it was not an abort error
       if (error.name !== 'AbortError') {
         setErrorMsg('There was an error fetching the photo:', error);
       }
+      setIsLoading(false); // Move this here in case of an error
     });
-   setIsLoading(false);
-  // Return the cleanup function
+
   return () => {
     controller.abort();
-    let tags;
   };
 }, [selectedLocation, details]);
 
 
 
-console.log(tags)
+console.log(imageUrls)
 
 return (
   isLoading ? (
