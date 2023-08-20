@@ -36,7 +36,7 @@ useEffect(() => {
         const { farm, server, id, secret } = photo;
         return `https://farm${farm}.staticflickr.com/${server}/${id}_${secret}.jpg`;
       });
-      const selectedUrls = shuffleArray(urls).slice(0, 6);
+      const selectedUrls = shuffleArray(urls).slice(0, 49);
       setImageUrls(selectedUrls);
     })
     .catch(error => {
@@ -63,14 +63,18 @@ return (
   ) : errorMsg ? (
     <div>{errorMsg}</div>
   ) : (
-    <div className='brochure-container'>
-    <h1>Brochure</h1>
-    <div className='brochure-grid'>
-      {imageUrls.map((url, index) => (
-        <img key={index} src={url} alt={`Image ${index}`} />
-      ))}
-        </div>
-    </div>
+<div className="brochure-container">
+  <h1>Brochure</h1>
+  <div className="brochure-grid">
+    {imageUrls.map((url, index) => (
+      <div key={index} className="brochure-item">
+        <img src={url} alt={`Image ${index}`} />
+      </div>
+    ))}
+  </div>
+</div>
+
+
   
   )
 );
