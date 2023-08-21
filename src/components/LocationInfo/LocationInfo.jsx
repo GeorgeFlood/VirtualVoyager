@@ -32,7 +32,8 @@ useEffect(() => {
  fetch(url, { signal }) // Pass the signal to the fetch call
     .then(res => res.json())
     .then(data => {
-      const urls = data.results.map(photo => photo.urls.full);
+      console.log(data)
+      const urls = data.results.map(photo => photo.urls.regular);
       const selectedUrls = shuffleArray(urls).slice(0, 8);
       setImageUrls(selectedUrls);
       setIsLoading(false); // Move this inside the then block
